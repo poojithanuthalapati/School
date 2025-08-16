@@ -1,0 +1,52 @@
+﻿@model List<School.Models.studentDetails>
+
+@{
+    ViewData["Title"] = "Students List";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <link rel="stylesheet" href="../css/site.css">    
+</head>
+<body>
+<h2>Students List</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th>Grade</th>
+            <th>Gender</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.studentID</td>
+                <td>@student.studentName</td>
+                <td>@student.studentAddress</td>
+                <td>@student.emailAddress</td>
+                <td>@student.phoneNumber</td>
+                <td>@student.age</td>
+                <td>@student.studentGrade</td>
+                <td>@student.studentGender</td>
+                <td><a href="/subscription/studentdelete/@student.studentID">Delete</a></td>
+                <td><a href="/studentedit/@student.studentID">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</body>
+</html>

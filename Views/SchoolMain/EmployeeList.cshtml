@@ -1,0 +1,61 @@
+﻿@model List<School.Models.employeeDetails>
+
+@{
+    ViewData["Title"] = "EmployeeList";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="../css/site.css">    
+</head>
+<body>
+<h2>Employee List</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>EMP ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>User Name</th>
+
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Joined</th>
+            <th>Date</th>
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Reset Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.empID</td>
+                <td>@employee.firstName</td>
+                <td>@employee.lastName</td>
+                <td>@employee.empUserName</td>
+                <td>@employee.age</td>
+                <td>@employee.emailAddress</td>
+                <td>@employee.phoneNumber</td>
+                <td>@employee.yearJoined</td>
+                <td>@employee.dateEmp</td>
+                <td><a href="/empdelete/@employee.empID">Delete</a></td>
+                <td><a href="/empedit/@employee.empUserName">Edit</a></td>
+                <td><a href="/subscription/resetpassword/@employee.empUserName">Set</a></td>
+
+
+               
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+</body>
+</html>

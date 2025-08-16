@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noble Admin</title>
+    <link rel="stylesheet" href="../style/styles.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/jpeg" href="../images/images1.jpg">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/smain">Home</a>
+
+        <!-- Employee Menu -->
+        <div class="subnav">
+            <button class="subnavbtn">Sudent Access<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+                <a href="/student" target="iframe_a">New Student</a>
+                <a href="/studentlist" target="iframe_a">Student List</a>
+            </div>
+        </div>
+
+        <!-- Release Menu -->
+        <div class="subnav">
+            <button class="subnavbtn">Empoyee Accees<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+                <a href="/employee" target="iframe_a">New Employee</a>
+                <a href="/employeelist" target="iframe_a">Employee List</a>
+
+            </div>
+        </div>
+
+        <!-- Configuration Menu -->
+        <a href="/LeaveManage">Leave Management</a>
+
+
+        <!-- Files Menu -->
+        <div class="subnav">
+            <button class="subnavbtn">Files <i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+                <a href="/fileupload" target="iframe_a">Upload File to FTP</a>
+                <a href="/fileuploadftp" target="iframe_a">Upload File to Data Lake</a>
+                <a href="/api/blob/list" target="iframe_a">Data Lake File List</a>
+            </div>
+        </div>
+
+        <!-- Additional Links -->
+        <a href="/getcountry" target="iframe_a">Country Details</a>
+        <a href="/logout" >Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h3>Login user: @ViewBag.UserData</h3>
+        <p>Welcome to Noble School Administration.</p>
+        <iframe src="../images/Noble.jpg" name="iframe_a" height="700" width="100%" title="Integration Admin"></iframe>
+    </div>
+</body>
+</html>

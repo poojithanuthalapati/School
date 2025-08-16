@@ -1,0 +1,114 @@
+﻿@model School.Models.studentDetails
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Class Subscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Class Subscription</h2>
+        <form action="/subscription/studentupdate" method="post">
+
+            <input type="hidden" id="studentID" name="studentID" value=@Model.studentID />
+
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" name="studentName" value="@Model.studentName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentAddress">Student Address:</label>
+                <input type="text" id="studentAddress" name="studentAddress" value="@Model.studentAddress" required>
+            </div>
+
+            <div class="form-group">
+                <label for="emailAddress">Email Address:</label>
+                <input type="email" id="emailAddress" name="emailAddress" value="@Model.emailAddress" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" value="@Model.phoneNumber" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value="@Model.age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentGrade">Student Grade:</label>
+                <input type="text" id="studentGrade" name="studentGrade" value="@Model.studentGrade" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentGender">Student Gender:</label>
+                <select id="studentGender" name="studentGender"  required>
+                    <option value="">Select Gender</option>
+                    <option value="Male" selected="@(Model.studentGender == "Male")">Male</option>
+                    <option value="Female" selected="@(Model.studentGender == "Female")">Female</option>
+                    <option value="Other" selected="@(Model.studentGender == "Other")">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
