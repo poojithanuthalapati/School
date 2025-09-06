@@ -19,6 +19,12 @@ namespace School.BusinessLayer
             return empdata.CreateEmployee(employee);
         }
 
+        public async Task<string> CreateEmployeeAsync(employeeDetails employee)
+        {
+            EmployeeData empdata = new();
+            return await empdata.CreateEmployeeAsync(employee);
+        }
+
         public string UpdateEmployee(employeeDetails employee)
         {
             EmployeeData empdata = new();

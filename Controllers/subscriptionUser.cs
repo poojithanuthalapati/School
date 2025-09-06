@@ -66,6 +66,17 @@ namespace School.Controllers
             return returnValue;
         }
 
+        [HttpPost("empcreateasync")]
+        public async Task<ActionResult<string>> CreateEmployeeAsync([FromForm] employeeDetails std)
+        {
+            EmployeeLayer std1 = new();
+            string returnValue = await std1.CreateEmployeeAsync(std);
+
+            Console.WriteLine("Employee Created for : " + std.empUserName);
+
+            return returnValue;
+        }
+
         [HttpPost("setpassword")]
         public string SetPassword([FromForm] userPassword std)
         {

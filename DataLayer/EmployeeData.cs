@@ -56,6 +56,60 @@ namespace School.DataLayer
             return "Employee successfully created ID : " + employee.empUserName;
         }
 
+        public async Task<string> CreateEmployeeAsync(employeeDetails employee)
+        {
+            string SixDigitPassword;
+            string connectionString = ConfigurationHelper.GetValue("ConnectionString");
+            EmailOTPLayer EOTP = new();
+
+            SixDigitPassword = EOTP.Generate6DigitOTP();
+
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("sp_CreateEmp", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    Console.WriteLine("Employee Created for : 1 ");
+
+                    // Add parameters (use Add instead of AddWithValue for better performance)
+                    command.Parameters.Add(new SqlParameter("@FirstName", SqlDbType.NVarChar) { Value = employee.firstName });
+                    command.Parameters.Add(new SqlParameter("@LastName", SqlDbType.NVarChar) { Value = employee.lastName });
+                    command.Parameters.Add(new SqlParameter("@EMPUserName", SqlDbType.NVarChar) { Value = employee.empUserName });
+                    command.Parameters.Add(new SqlParameter("@EMPpassword", SqlDbType.NVarChar) { Value = SixDigitPassword });
+                    command.Parameters.Add(new SqlParameter("@Age", SqlDbType.Int) { Value = employee.age });
+                    command.Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar) { Value = employee.emailAddress });
+                    command.Parameters.Add(new SqlParameter("@PhoneNumber", SqlDbType.NVarChar) { Value = employee.phoneNumber });
+                    command.Parameters.Add(new SqlParameter("@YearJoined", SqlDbType.Int) { Value = employee.yearJoined });
+
+                    Console.WriteLine("Employee Created for : 2 ");
+
+                    // Open connection asynchronously
+                    await connection.OpenAsync();
+
+                    // Execute command asynchronously
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    Console.WriteLine("Employee Created for : 3 ");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error 
+                Console.WriteLine($"Error inserting employee: {ex.Message}");
+                return "employee creation failed";
+            }
+
+            Console.WriteLine("Employee Created for : 4 ");
+
+            // Send email asynchronously (if SendEmail supports async)
+            //await EOTP.SendEmailAsync(employee.emailAddress, "New Employee Creation",
+               // $"Dear Employee please find your temporary password : {SixDigitPassword}");
+
+            return $"Employee successfully created ID : {employee.empUserName}";
+        }
+
+
         public string UpdateEmployee(employeeDetails employee)
         {
             string connectionString = ConfigurationHelper.GetValue("ConnectionString");
