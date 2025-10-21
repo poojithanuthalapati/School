@@ -52,7 +52,8 @@ namespace School.DataLayer
             }
             Console.WriteLine("Employee Created for : 4 ");
 
-            EOTP.SendEmail(employee.emailAddress, "New Employe Creation", "Dear Employee please find your temporary password : " + SixDigitPassword);
+            EOTP.SendEmail(employee.emailAddress, "New Employe Creation", "Dear Employee please find your temporary password : " + SixDigitPassword
+                + " along with your username : " + employee.empUserName);
             return "Employee successfully created ID : " + employee.empUserName;
         }
 
